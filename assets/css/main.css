@@ -3095,7 +3095,7 @@ input, select, textarea {
 
 			.features article-wide {
 				margin: 1em 2em 1em 0;
-				width: calc(50% - 1em);
+				width: 100%;
 			}
 
 			.features article-homepage {
@@ -3123,7 +3123,7 @@ input, select, textarea {
 			.features article-wide {
 				padding: 1.5em 1.5em 0.1em 1.5em ;
 				margin: 0.875em 1.75em 0.875em 0;
-				width: calc(50% - 0.875em - 1px);
+				width: 100%;
 			}
 
 				.features article-wide .image {
@@ -3151,7 +3151,7 @@ input, select, textarea {
 		@media screen and (max-width: 480px) {
 
 			.features {
-				display: block;
+				display: flex;
 			}
 
 				.features article {
