@@ -138,7 +138,7 @@ input, select, textarea {
 
 		}
 
-		@media screen and (max-width: 1280px) {
+		@media screen and (max-width: 3840px) {
 
 			body, input, select, textarea {
 				font-size: 12pt;
@@ -859,7 +859,7 @@ input, select, textarea {
 
 		}
 
-		@media screen and (max-width: 1280px) {
+		@media screen and (max-width: 3840px) {
 
 			.row {
 				display: flex;
@@ -3675,8 +3675,8 @@ input, select, textarea {
 			text-transform: uppercase;
 		}
 
-	@media screen and (max-width: 1280px) {
-
+	@media screen and (max-width: 3840px) {
+/*1280px was previous*/
 		#wrapper > header {
 			padding: 9em 0 6.25em 0 ;
 			background-color: #2e3141;
@@ -4169,7 +4169,7 @@ input, select, textarea {
 					color: inherit;
 				}
 
-	@media screen and (max-width: 1280px) {
+	@media screen and (max-width: 3840px) {
 
 		#footer {
 			background-color: #2e3141;
