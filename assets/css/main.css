@@ -3974,6 +3974,14 @@ input, select, textarea {
 					width: 100%;
 				}
 
+			.wrapper.spotlight .logo {
+				/*border-radius: 100%;*/
+				margin: 0 3em 2em 0;
+				width: 15em;
+				overflow: hidden;
+				-ms-flex: 1;
+			}
+
 			.wrapper.spotlight .content {
 				width: 100%;
 				-ms-flex: 2;
@@ -4098,6 +4106,11 @@ input, select, textarea {
 				.wrapper.spotlight .image {
 					margin: 0 2em 2em 0;
 					width: 32em;
+				}
+
+				.wrapper.spotlight .logo {
+					margin: 0 2em 2em 0;
+					width: 15em;
 				}
 
 				.wrapper.spotlight:nth-child(2n - 1) .image {
