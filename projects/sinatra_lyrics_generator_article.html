@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>Sinatra Lyrics RNN - Hannan Khan</title>
+    <link rel="icon" href="../assets/css/images/logo_cropped_centered.svg" type="image/x-icon">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+    <link rel="stylesheet" href="../assets/css/gh_gists_solarized_dark.css"/>
+    <noscript>
+        <link rel="stylesheet" href="../assets/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
+
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="../index.html">Hannan Khan</a></h1>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
+
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../aboutme.html">About Me</a></li>
+                <li><a href="../workexperience.html">Work Experience</a></li>
+                <li><a href="../skills.html">Skills</a></li>
+                <li><a href="../articles.html">Articles</a></li>
+                <li><a href="../portfolio.html">Portfolio</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+        </div>
+    </nav>
+
+    <!-- Wrapper -->
+    <section id="wrapper">
+        <header style="background-image: linear-gradient(to top, rgba(46, 49, 65, 0.9), rgba(46, 49, 65, 0.9)), url('../images/sinatra_1.jpg');">
+            <div class="inner">
+                <h2>Sinatra Lyrics Generator RNN</h2>
+                <p>08-26-2022<br>A walk-through of how I gathered the data for this project and how I created & trained
+                    the model.</p>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="wrapper">
+            <div class="inner">
+
+                <h2 class="major">Creating A Custom Dataset Of Mr. Sinatra's Lyrics</h2>
+                <p>When creating a project such as this, the first task at hand
+                    is to gather all necessary data, and clean it. Luckily for me,
+                    there are numerous methods to collect lyric data off of websites,
+                    a process called web-scraping. In order to scrape the lyrics, you can
+                    use one of two methods:</p>
+                <ul>
+                    <li>Scraping the html content of the website.</li>
+                    <li>Using an API provided by the website host.</li>
+                </ul>
+                <p>The first method of getting each song's lyric page's html content
+                    and then parsing through to find and store just the lyrics, is
+                    as tedious as it sounds. The second method of using an API
+                    is far more simpler. Albeit, an API usually requires some sort of
+                    subscription/access key which can only be obtained by signing
+                    up at the host's website.<br>
+                    In this project, I opted to use a website called Genius's API
+                    to scrape Mr. Sinatra's lyrics.</p>
+
+                <h3>Scraping Lyrics Using The Genius API</h3>
+                <p>Genius is a website where users can upload explanations
+                    to any song's lyrics. The explanations can then be voted on
+                    by other users. The Genius API allows registered users to
+                    interact with the sites functionalities, one of which includes
+                    getting the lyrics.<br>
+                    Below you can see the snippet of code I used to retrieve and
+                    save all the related lyrics. Mind you, this code should work
+                    for any singer that is on Genius.com, you just have to spell
+                    the name right. The "GENIUS_ACCESS_TOKEN" refers to the
+                    passcode that allows me to interact with the Genius API. It
+                    is obtained by registering on the website.</p>
+                <script src="https://gist.github.com/hannankhan888/5a90a11e02cc2b9ddaf274bd592d91a6.js"></script>
+                <h3>Cleaning The Lyrics Data</h3>
+                <p><span class="image right"><img
+                        src="../images/sinatra_lyrics_generator_rnn/lyrics_json_screenshot.png" alt=""></span>
+                    As you can see on the right, the downloaded lyrics were saved in a JSON file
+                    that was too long to be human-readable. So, I decided to parse through this
+                    JSON file, and make it more human-friendly by converting it into a simple CSV
+                    file.</p>
+                <p>Parsing through the JSON and creating a CSV of just the relevant information
+                    took an entire script on its own. In fact, the main reason it took an entire day,
+                    as well as multiple iterations was because of the JSON data.<br>
+                    You see, the JSON data, direct from the API, was faulty and unclean. The
+                    lyric's data, as well as each song's metadata was filled with unwanted, non-parseable,
+                    and non-human-readable characters. In order to tackle this problem, I had to
+                    iterate through each song, and remove any unwanted characters. As you can
+                    see from my code snippet below, the API returned a tremendous amount of unique
+                    unwanted characters.<br>
+                    The punctuations were optional to remove, as certain
+                    character-level RNN models treat those as tokens. However, I wanted to remove
+                    punctuation, as songs lyrics contained periods and commas at most.</p>
+                <script src="https://gist.github.com/hannankhan888/b9fe1643fdb6adf89db977713ac72608.js"></script>
+                <p><span class="image left"><img src="../images/sinatra_lyrics_generator_rnn/lyrics_csv_screenshot.png"
+                                                 alt=""></span>
+                    With my lyrics-cleaning done, I finally had my cleaned CSV file, which you can
+                    see on the left. I had decided to keep certain metadata about each song, as it
+                    might come into use for another project (perhaps to create a song title generator).<br>
+                    Mind you, the way I have this project set up in the GitHub repo, you can replace the artist's name
+                    with any artist you want, and at the end you will have a fully trained RNN lyrics generator for that
+                    artist.</p>
+                <p>All that was left was to iterate through my CSV file, and create a simple text file of ONLY the
+                    lyrics which I can load into my RNN script. ALAS, I was finally done with just gathering and
+                    cleaning the data.</p>
+
+                <h2 class="major">Loading The Dataset For The Model</h2>
+                <p>For all RNN character-level text generation models, the process is generally the same. Assuming we
+                    have cleaned data at the ready, all we have to do is:</p>
+                <ol>
+                    <li>Load the data into a variable.</li>
+                    <li>Generate a vocabulary (basically convert our data into a set of unique words or letters).</li>
+                    <script src="https://gist.github.com/hannankhan888/224361d2d05d6fd164210d52bcca0cf6.js"></script>
+                    <li>Create functions to aid in conversion between each letter and its corresponding ID. We use these
+                        to generate all IDs in our data.
+                    </li>
+                    <script src="https://gist.github.com/hannankhan888/2720c39e79895040e5d29d1055ce1da2.js"></script>
+                    <li>Define a sequence length and split our data into sequences, thus generating a dataset.</li>
+                    <script src="https://gist.github.com/hannankhan888/dfa7782f1c980aca9d6a951a90247dfd.js"></script>
+                </ol>
+                <p>Now we can focus on creating and training the actual model itself.</p>
+
+                <h2 class="major">Creating The RNN Model</h2>
+                <p>We need to first define the embedding dimension as well as the number of
+                    RNN units (GRUs - Gated Recurrent Units) before we can define the LyricsGeneratorModel
+                    class.</p>
+                <script src="https://gist.github.com/hannankhan888/8a590522b4514872457e1182349fd2cb.js"></script>
+
+                <p>As a sanity check, we can see the next-char predictions of the untrained model:</p>
+                <script src="https://gist.github.com/hannankhan888/c63caf58a552849c793ef83b07149cb5.js"></script>
+                <p>We get the following output:</p>
+                <pre><code>
+Input: b's i see soon begins bewitching me its that old devil moon that you stole from the skies its that old'
+Next char predictions:
+b't[UNK]vtbpszf nqycgt uwweyzryjcxsdeiqqag uo fobxzqmqqsxmmv lxxbvizzmuubptzikawishqnlp lntuwxgnwud[UNK]maqlrp'
+                </code></pre>
+
+                <h2 class="major">Compiling And Fitting The Model</h2>
+                <p>Finally, we can choose a loss function, and train our model.</p>
+                <script src="https://gist.github.com/hannankhan888/1cb3a3dd802bafb4b71dfcc3dfc4e4ab.js"></script>
+                <p>
+                    In my case, I chose to go with 80 epochs of training. I believe that this led
+                    to my model being over-fit, as you can notice when you play with the deployed version.
+                    Sometimes, the sentences generated are too accurate, and even spot on with
+                    Mt. Sinatra's most famous lyrics (im looking at you 'Fly me to the moon'!).
+                </p>
+                <div class="col-12"><span class="image fit"><img
+                        src="../images/sinatra_lyrics_generator_rnn/overfit_example_webapp.png" alt=""/></span></div>
+
+                <p>
+                    Over the 80 epochs, as you can see below, the lowest training loss I achieved
+                    was only 0.09. This definitely indicates an over-fit model.</p>
+                <div class="col-12"><span class="image fit"><img
+                        src="../images/sinatra_lyrics_generator_rnn/rnn_training_loss.png" alt=""/></span></div>
+
+                <h2 class="major">Takeaways/Lessons Learned</h2>
+                <p>I have definitely over-fit this model. If I were to train again, I would go
+                    for both less model complexity and less training epochs.</p>
+                <p>As for the data. Next time would be a great time to further clean the
+                    data itself. Perhaps create a word-level RNN lyrics generator instead of a
+                    character-level one.</p>
+                <p>With the way I have the CSV file structured, I would even be able to train
+                    another RNN solely to generate a song title in the like of Frank Sinatra. That
+                    would make for a really nice, complete webapp.</p>
+                <p>For now, you can visit the webapp and the entire code repository, linked below.</p>
+
+                <div class="col-12">
+                    <ul class="actions stacked">
+                        <li>
+                            <a href="https://github.com/hannankhan888/Sinatra_Lyrics_Generator_RNN" class="button fit"
+                               target="_blank">Repo</a>
+                        </li>
+                        <li>
+                            <a href="https://share.streamlit.io/hannankhan888/Sinatra_Lyrics_Generator_RNN_WebApp/main"
+                               class="button primary fit" target="_blank">WebApp</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <section id="footer">
+        <div class="inner">
+            <h2 class="major">Get in touch</h2>
+            <p>The quickest way to reach me is via email.</p>
+            <ul class="contact">
+                <li class="icon solid fa-home">
+                    Dallas, Texas<br/>
+                </li>
+                <li class="icon solid fa-envelope"><a href="mailto: hannankhan888@gmail.com" target="_blank">Email</a>
+                </li>
+                <li class="icon brands fa-linkedin"><a href="https://www.linkedin.com/in/hannankhan888" target="_blank">https://www.linkedin.com/in/hannankhan888</a>
+                </li>
+                <li class="icon brands fa-github"><a href="https://github.com/hannankhan888" target="_blank">https://github.com/hannankhan888</a>
+                </li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy; 2022 Hannan Khan</li>
+                <li>Special Thanks To & Design By: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+<!-- Scripts -->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.scrollex.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
+
+</body>
+</html>
