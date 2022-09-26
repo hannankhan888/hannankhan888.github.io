@@ -62,8 +62,7 @@
                 <h2 class="major">Creating A Custom Dataset Of Mr. Sinatra's Lyrics</h2>
                 <p>When creating a project such as this, the first task at hand
                     is to gather all necessary data, and clean it. Luckily for me,
-                    there are numerous methods to collect lyric data off of websites,
-                    a process called web-scraping. In order to scrape the lyrics, you can
+                    there are numerous methods to collect lyric data off of websites. In order to scrape the lyrics, you can
                     use one of two methods:</p>
                 <ul>
                     <li>Scraping the html content of the website.</li>
@@ -102,7 +101,7 @@
                     took an entire script on its own. In fact, the main reason it took an entire day,
                     as well as multiple iterations was because of the JSON data.<br>
                     You see, the JSON data, direct from the API, was faulty and unclean. The
-                    lyric's data, as well as each song's metadata was filled with unwanted, non-parseable,
+                    lyrics data, as well as each song's metadata was filled with unwanted, non-parseable,
                     and non-human-readable characters. In order to tackle this problem, I had to
                     iterate through each song, and remove any unwanted characters. As you can
                     see from my code snippet below, the API returned a tremendous amount of unique
@@ -161,7 +160,7 @@ b't[UNK]vtbpszf nqycgt uwweyzryjcxsdeiqqag uo fobxzqmqqsxmmv lxxbvizzmuubptzikaw
                     In my case, I chose to go with 80 epochs of training. I believe that this led
                     to my model being over-fit, as you can notice when you play with the deployed version.
                     Sometimes, the sentences generated are too accurate, and even spot on with
-                    Mt. Sinatra's most famous lyrics (im looking at you 'Fly me to the moon'!).
+                    Mr. Sinatra's most famous lyrics (im looking at you 'Fly me to the moon'!).
                 </p>
                 <div class="col-12"><span class="image fit"><img
                         src="../images/sinatra_lyrics_generator_rnn/overfit_example_webapp.png" alt=""/></span></div>
