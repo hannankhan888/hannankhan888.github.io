@@ -5,113 +5,133 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>LDAP Authentication - Hannan Khan</title>
-		<link rel = "icon" href ="../assets/css/images/logo_cropped_centered.svg" type = "image/x-icon">
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+    <title>LDAP Authentication - Hannan Khan</title>
+    <link rel="icon" href="../assets/css/images/logo_cropped_centered.svg" type="image/x-icon">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="../assets/css/main.css"/>
+    <noscript>
+        <link rel="stylesheet" href="../assets/css/noscript.css"/>
+    </noscript>
+</head>
+<body class="is-preload">
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+<!-- Page Wrapper -->
+<div id="page-wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="../index.html">Hannan Khan</a></h1>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="../index.html">Hannan Khan</a></h1>
+        <nav>
+            <a href="#menu">Menu</a>
+        </nav>
+    </header>
 
-				<!-- Menu -->
-					<nav id="menu">
-						<div class="inner">
-							<h2>Menu</h2>
-							<ul class="links">
-								<li><a href="../index.html">Home</a></li>
-								<li><a href="../aboutme.html">About Me</a></li>
-								<li><a href="../workexperience.html">Work Experience</a></li>
-								<li><a href="../skills.html">Skills</a></li>
-								<li><a href="../articles.html">Articles</a></li>
-								<li><a href="../portfolio.html">Portfolio</a></li>
-							</ul>
-							<a href="#" class="close">Close</a>
-						</div>
-					</nav>
+    <!-- Menu -->
+    <nav id="menu">
+        <div class="inner">
+            <h2>Menu</h2>
+            <ul class="links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../aboutme.html">About Me</a></li>
+                <li><a href="../workexperience.html">Work Experience</a></li>
+                <li><a href="../skills.html">Skills</a></li>
+                <li><a href="../articles.html">Articles</a></li>
+                <li><a href="../portfolio.html">Portfolio</a></li>
+            </ul>
+            <a href="#" class="close">Close</a>
+        </div>
+    </nav>
 
-				<!-- Wrapper -->
-					<section id="wrapper">
-						<header style="background-image: linear-gradient(to top, rgba(46, 49, 65, 0.9), rgba(46, 49, 65, 0.9)), url('../images/colorblind_ai.png');">
-							<div class="inner">
-								<h2>LDAP Authentication</h2>
-								<p>08-18-2023<br>Why isn't there more documentation on this?!</p>
-							</div>
-						</header>
+    <!-- Wrapper -->
+    <section id="wrapper">
+        <header style="background-image: linear-gradient(to top, rgba(46, 49, 65, 0.9), rgba(46, 49, 65, 0.9)), url('../images/login_failed_cropped.png');">
+            <div class="inner">
+                <h2>LDAP Authentication</h2>
+                <p>08-18-2023<br>Why isn't there more documentation on this?!</p>
+            </div>
+        </header>
 
-						<!-- Content -->
-							<div class="wrapper">
-								<div class="inner">
+        <!-- Content -->
+        <div class="wrapper">
+            <div class="inner">
 
-									<h3 class="major">Trying To Authenticate With LDAP</h3>
-									<p>
-										At the time of doing this project, there was no colorblindess
-									test images dataset. I had an option to either scrape the images
-									or build my own. Upon finding no resources to scrape the data,
-									I decided to undertake the task of creating my own custom
-									Ishihara Plate dataset.</p>
+                <h3 class="major">Trying To Authenticate With LDAP</h3>
+                <p> At work, I was tasked with creating a application for end users/clientele. Given that this work was
+                    slightly confidential, each library/software/method used had to be approved. Given that this app
+                    needed to authenticate users, existing options such as firebase could not be approved, and neither
+                    could any of the other libraries that were suggested. "Besides, there is a company LDAP server that
+                    most of our apps use to authenticate users", I was told. So began my difficult journey into learning
+                    about this technology.</p>
 
-									<h4>Gathering The Images</h4>
-									<p><span class="image right"><img src="../images/colorblind_ai/1483.png" alt="" /></span>
-									The first task was to find out how to create a custom
-									Ishihara Plate image. Luckily for me, there was an online <a href="https://franciscouzo.github.io/ishihara/" target="_blank">tool</a>
-									for doing such a thing. Using a set of images of digits, I was
-									able to (not quickly nor easily) create 14 images for each digit.
-									These images were created with   the predefined settings on
-									the <a href="https://franciscouzo.github.io/ishihara/" target="_blank">tool's webpage</a>.
-									The settings result in 7 images, while the negatives of each
-									result in 14 images per digit.</p>
+                <h4>An Initial Foray Into LDAP</h4>
+                <p></p>
+                <h4>But... But... I'm Following The Docs!</h4>
+                <p></p>
+                <h4>Forget The Company Server, Let's Try A Test Server</h4>
+                <p></p>
+                <h4>Forget R, Let's Try Curl From The CMD Line</h4>
+                <p></p>
+                <h4>Success!</h4>
+                <p></p>
+                <h4>Takeaways/Lessons Learned</h4>
+                <p></p>
 
-									<h4>Augmenting The Images</h4>
-									<p>In order to generate a substantial dataset, I would need
-									to generate more images. The only method for me to do this
-									would be to augment the images using Keras's image preprocessing
-									library. The augmentations made to the images include:</p>
 
-									<ul>
-										<li>Resizing</li>
-										<li>Rotating</li>
-										<li>Shearing</li>
-										<li>Zooming</li>
-										<li>Replacing white (255) values with black (0)</li>
-									</ul>
 
-									<pre><code># Augmenting Generator Object
+                <p><span class="image right"><img src="../images/colorblind_ai/1483.png" alt=""/></span>
+                    The first task was to find out how to create a custom
+                    Ishihara Plate image. Luckily for me, there was an online <a
+                            href="https://franciscouzo.github.io/ishihara/" target="_blank">tool</a>
+                    for doing such a thing. Using a set of images of digits, I was
+                    able to (not quickly nor easily) create 14 images for each digit.
+                    These images were created with the predefined settings on
+                    the <a href="https://franciscouzo.github.io/ishihara/" target="_blank">tool's webpage</a>.
+                    The settings result in 7 images, while the negatives of each
+                    result in 14 images per digit.</p>
+
+                <h4>Augmenting The Images</h4>
+                <p>In order to generate a substantial dataset, I would need
+                    to generate more images. The only method for me to do this
+                    would be to augment the images using Keras's image preprocessing
+                    library. The augmentations made to the images include:</p>
+
+                <ul>
+                    <li>Resizing</li>
+                    <li>Rotating</li>
+                    <li>Shearing</li>
+                    <li>Zooming</li>
+                    <li>Replacing white (255) values with black (0)</li>
+                </ul>
+
+                <pre><code># Augmenting Generator Object
 data_generator = ImageDataGenerator(
     rotation_range=30,
     shear_range=0.2,
     zoom_range=0.2,
     fill_mode='nearest')</code></pre>
 
-									<p><span class="image left"><img src="../images/colorblind_ai/3069.png" alt="" /></span>
-										After augmenting, I had 5600 Images in my dataset.
-									Previously, I had augmented the images to also shift, however,
-									as I noticed in my testing, the shifting affected my accuracy
-									negatively.</p>
+                <p><span class="image left"><img src="../images/colorblind_ai/3069.png" alt=""/></span>
+                    After augmenting, I had 5600 Images in my dataset.
+                    Previously, I had augmented the images to also shift, however,
+                    as I noticed in my testing, the shifting affected my accuracy
+                    negatively.</p>
 
-									<p>The entirety of image augmentations were completed
-									using <a href="https://github.com/hannankhan888/Colorblind_AI/blob/main/image_modifications.ipynb" target="_blank">this</a> notebook.</p>
+                <p>The entirety of image augmentations were completed
+                    using <a href="https://github.com/hannankhan888/Colorblind_AI/blob/main/image_modifications.ipynb"
+                             target="_blank">this</a> notebook.</p>
 
-									<h4>Creating The Train/Test Split</h4>
-									<p>At the time of creating this dataset, I had little to no idea
-										of the powers of torchvision's library. Instead of creating a
-									dataset, and then having torchvision handling the split, I
-									took it upon myself to split the dataset. The <a href="https://github.com/hannankhan888/Colorblind_AI/blob/main/create_train_test_sets_from_images.ipynb" target="_blank">notebook</a>
-									converts image data organized like this:</p>
+                <h4>Creating The Train/Test Split</h4>
+                <p>At the time of creating this dataset, I had little to no idea
+                    of the powers of torchvision's library. Instead of creating a
+                    dataset, and then having torchvision handling the split, I
+                    took it upon myself to split the dataset. The <a
+                            href="https://github.com/hannankhan888/Colorblind_AI/blob/main/create_train_test_sets_from_images.ipynb"
+                            target="_blank">notebook</a>
+                    converts image data organized like this:</p>
 
-									<pre><code>src_dir
+                <pre><code>src_dir
 ----class1
     ----image1
     ----image2
@@ -121,9 +141,9 @@ data_generator = ImageDataGenerator(
     ----image2
     ----...
 ----...</code></pre>
-									<p>Into a directory structure like this:</p>
+                <p>Into a directory structure like this:</p>
 
-									<pre><code>src_dir
+                <pre><code>src_dir
 ----train_dir
     ----class1
         ----image1
@@ -143,19 +163,19 @@ data_generator = ImageDataGenerator(
         ----image283
         ----...</code></pre>
 
-									<p>The train/test size is defined within the notebook. The
-									notebook completes this task by computing a mask, and then
-									placing each image in the appropriate folder. Lastly, it deletes
-									any redundant/unused folders. Again, there are easier ways
-									to complete the same task using the torchvision library.</p>
+                <p>The train/test size is defined within the notebook. The
+                    notebook completes this task by computing a mask, and then
+                    placing each image in the appropriate folder. Lastly, it deletes
+                    any redundant/unused folders. Again, there are easier ways
+                    to complete the same task using the torchvision library.</p>
 
-									<h4>Loading The Data/Creating A Validation Dataset</h4>
-									<p>Below, you can see the ease with which torchvision allows
-									you to manipulate image datasets. I was able to create a
-									validation dataset with only one line of code. Each dataset
-									had been converted to tensor, and each image was normalized.</p>
+                <h4>Loading The Data/Creating A Validation Dataset</h4>
+                <p>Below, you can see the ease with which torchvision allows
+                    you to manipulate image datasets. I was able to create a
+                    validation dataset with only one line of code. Each dataset
+                    had been converted to tensor, and each image was normalized.</p>
 
-									<pre><code>
+                <pre><code>
 tensor_transform = transforms.Compose([transforms.ToTensor(),
                                        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
@@ -164,97 +184,85 @@ train_dataset, val_dataset = torch.utils.data.random_split(train_dataset, (4032,
 test_dataset = ImageFolder(root = test_dir, transform = tensor_transform)
 									</code></pre>
 
-									<h3 class="major">Investigating The Effects Of Pooling</h3>
-									<p><span class="image right"><img src="../images/colorblind_ai/img_1.png" alt="" /></span>
-										With this particular problem (detecting numbers within
-										multi-colored images) pooling seemed to have a large effect
-										on the test accuracy. In order to find out more, I decided
-									to test out multiple types of pooling on one particular image.
-									The poolings I tested were:</p>
+                <h3 class="major">Investigating The Effects Of Pooling</h3>
+                <p><span class="image right"><img src="../images/colorblind_ai/img_1.png" alt=""/></span>
+                    With this particular problem (detecting numbers within
+                    multi-colored images) pooling seemed to have a large effect
+                    on the test accuracy. In order to find out more, I decided
+                    to test out multiple types of pooling on one particular image.
+                    The poolings I tested were:</p>
 
-									<ul>
-										<li>MaxPool2d</li>
-										<li>AvgPool2d</li>
-										<li>FractionalMaxPool2d</li>
-										<li>LPPool2d</li>
-										<li>AdaptiveMaxPool2d</li>
-										<li>AdaptiveAvgPool2d</li>
-									</ul>
+                <ul>
+                    <li>MaxPool2d</li>
+                    <li>AvgPool2d</li>
+                    <li>FractionalMaxPool2d</li>
+                    <li>LPPool2d</li>
+                    <li>AdaptiveMaxPool2d</li>
+                    <li>AdaptiveAvgPool2d</li>
+                </ul>
 
-									<p>Upon looking at the results of the various poolings, it seemed
-									that in most images, MaxPool2D seemed to do a good job of
-									capturing the bigger picture. However, in certain cases, such
-									as the one below, only AdaptiveAvgPool2D did the trick. For creating
-									the model, I went with MaxPool2D.</p>
+                <p>Upon looking at the results of the various poolings, it seemed
+                    that in most images, MaxPool2D seemed to do a good job of
+                    capturing the bigger picture. However, in certain cases, such
+                    as the one below, only AdaptiveAvgPool2D did the trick. For creating
+                    the model, I went with MaxPool2D.</p>
 
-									<div class="col-12"><span class="image fit"><img src="../images/colorblind_ai/img_2.png" alt="" /></span></div>
+                <div class="col-12"><span class="image fit"><img src="../images/colorblind_ai/img_2.png" alt=""/></span>
+                </div>
 
-									<h3 class="major">Creating/Testing The Model</h3>
-									<p>In designing the architecture of the model, I decided to
-									follow a convolutional approach. I started with two convolutional
-									layers, each with batch normalization, ReLU, and MaxPool2D.
-									Finally, I flatten to 5 fully connected layers.</p>
+                <h3 class="major">Creating/Testing The Model</h3>
+                <p>In designing the architecture of the model, I decided to
+                    follow a convolutional approach. I started with two convolutional
+                    layers, each with batch normalization, ReLU, and MaxPool2D.
+                    Finally, I flatten to 5 fully connected layers.</p>
 
-									<div class="col-12"><span class="image fit"><img src="../images/colorblind_ai/model.png" alt="" /></span></div>
+                <div class="col-12"><span class="image fit"><img src="../images/colorblind_ai/model.png" alt=""/></span>
+                </div>
 
-									<p>Trained over 500 epochs, I am afraid that the complexity
-									of the model, along with the large number of epochs, has led
-									to the model being overfit. A testing accuracy of 99% seems
-									to confirm my theory.</p>
+                <p>Trained over 500 epochs, I am afraid that the complexity
+                    of the model, along with the large number of epochs, has led
+                    to the model being overfit. A testing accuracy of 99% seems
+                    to confirm my theory.</p>
 
-									<div class="col-12"><span class="image fit"><img src="../images/colorblind_ai/acc_loss.png" alt="" /></span></div>
+                <div class="col-12"><span class="image fit"><img src="../images/colorblind_ai/acc_loss.png"
+                                                                 alt=""/></span></div>
 
-									<h3 class="major">Takeaways/Lessons Learned</h3>
-									<p>The model is too complex for the task it is trying to complete.
-										Perhaps I need a simpler model, trained for less epochs, to
-										achieve a less 'overfit' test accuracy.</p>
-									<p>As for the dataset, it contains only images with white backgrounds
-										that were zeroed out to become black. When this model deployed
-										to the webapp, real life did not reflect these perfect circumstances.
-										Most 'white' pixels in real life were some shade of grey, and
-										therefore not blacked-out by the image transformation. In
-										order to increase the real life accuracy of this model, I will
-										need to train it on better, more realistic data.</p>
-									<p>Depending on the problem, the type of preprocessing in
-									computer vision projects can have a huge impact on the accuracy of
-									the model. For example, within this project alone, I found that
-									having shift augmentations would decrease accuracy. The whitespace
-									within the image would also negatively affect accuracy, as all
-									images had whitespace in them. Lastly, the pooling had a large effect
-									on how the image was augmented prior to training.</p>
+            </div>
+        </div>
 
-								</div>
-							</div>
+    </section>
 
-					</section>
+    <!-- Footer -->
+    <section id="footer">
+        <div class="inner">
+            <h2 class="major">Get in touch</h2>
+            <p>The quickest way to reach me is via email.</p>
+            <ul class="contact">
+                <li class="icon solid fa-home">
+                    Dallas, Texas<br/>
+                </li>
+                <li class="icon solid fa-envelope"><a href="mailto: hannankhan888@gmail.com" target="_blank">Email</a>
+                </li>
+                <li class="icon brands fa-linkedin"><a href="https://www.linkedin.com/in/hannankhan888" target="_blank">https://www.linkedin.com/in/hannankhan888</a>
+                </li>
+                <li class="icon brands fa-github"><a href="https://github.com/hannankhan888" target="_blank">https://github.com/hannankhan888</a>
+                </li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy; 2022 Hannan Khan</li>
+                <li>Special Thanks To & Design By: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+        </div>
+    </section>
+</div>
 
-				<!-- Footer -->
-					<section id="footer">
-						<div class="inner">
-							<h2 class="major">Get in touch</h2>
-							<p>The quickest way to reach me is via email.</p>
-							<ul class="contact">
-								<li class="icon solid fa-home">
-									Dallas, Texas<br />
-								</li>
-								<li class="icon solid fa-envelope"><a href="mailto: hannankhan888@gmail.com" target="_blank">Email</a></li>
-								<li class="icon brands fa-linkedin"><a href="https://www.linkedin.com/in/hannankhan888" target="_blank">https://www.linkedin.com/in/hannankhan888</a></li>
-								<li class="icon brands fa-github"><a href="https://github.com/hannankhan888" target="_blank">https://github.com/hannankhan888</a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; 2022 Hannan Khan</li><li>Special Thanks To & Design By: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</section>
-			</div>
+<!-- Scripts -->
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/jquery.scrollex.min.js"></script>
+<script src="../assets/js/browser.min.js"></script>
+<script src="../assets/js/breakpoints.min.js"></script>
+<script src="../assets/js/util.js"></script>
+<script src="../assets/js/main.js"></script>
 
-		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.scrollex.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
-
-	</body>
+</body>
 </html>
